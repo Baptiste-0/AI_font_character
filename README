@@ -1,6 +1,7 @@
 Author: https://github.com/Baptiste-0
 Python 3.11.9
 IA able to read basic font character not exactly centered
+already set up for 4 core, 1 gpu 3 cpu (my config works but no security if you have 4 gpu which is not the best option)
 
 generate_train => will create the data set for training
 generate_test => will create the data set to test after training

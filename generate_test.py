@@ -38,5 +38,7 @@ for font_path in fonts:
 
         draw.text((x, y), letter, font=font, fill=0)
 
-        filename = os.path.join(data_folder, f"{letter}_{os.path.basename(font_path)}.png")
+        nb_test = random.randint(0, 2500)
+
+        filename = os.path.join(data_folder, f"{letter}_{os.path.basename(font_path)}_{nb_test}.png")
         img.save(filename)
