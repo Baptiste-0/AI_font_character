@@ -1,0 +1,7 @@
+Python 3.11.9
+IA able to read basic font character not exactly centered
+
+generate_train => will create the data set for training
+generate_test => will create the data set to test after training
+test => run the test dataset
+train => train the IA and create the models
