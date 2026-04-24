@@ -41,19 +41,22 @@ class CNN(nn.Module):
         
         self.conv = nn.Sequential(
             nn.Conv2d(1, 32, 3, padding=1),  # 64x64
+            nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.MaxPool2d(2),                 # 32x32
             
             nn.Conv2d(32, 64, 3, padding=1),
+            nn.BatchNorm2d(64),
             nn.ReLU(),
             nn.MaxPool2d(2),                 # 16x16
         )
         
         self.fc = nn.Sequential(
             nn.Flatten(),
-            nn.Linear(64 * 16 * 16, 256),
+            nn.Linear(64 * 16 * 16, 512),
             nn.ReLU(),
-            nn.Linear(256, NUM_CLASSES)
+            nn.Linear(512, NUM_CLASSES),
+            nn.Dropout(0.3),
         )
 
     def forward(self, x):

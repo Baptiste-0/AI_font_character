@@ -29,9 +29,9 @@ def train():
     model = m.CNN().to(device)
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    optimizer = optim.Adam(model.parameters(), lr=0.0005)
 
-    epochs = 5
+    epochs = 7
     size_epoch = len(train_loader)
 
     try:

@@ -48,4 +48,6 @@ for f in test_files:
 print(f"Résultats bon: {correct / len(test_files) * 100:.2f}%")
 print("----------------------------")
 for i in range(NUM_CLASSES):
-    print(f"\'{CLASSES[i]}\' : {(correct_char[i] / nb_char[i]) * 100:.2f}%")
+    average = (correct_char[i] / nb_char[i]) * 100
+    if average < 92:
+        print(f"\'{CLASSES[i]}\' : {average:.2f}%")
