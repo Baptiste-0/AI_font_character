@@ -24,6 +24,8 @@ data_folder = "data/test"
 os.makedirs(data_folder, exist_ok=True)
 
 repeat = 2
+i = 0
+total = repeat * len(fonts) * len(model.CLASSES)
 
 for _ in range(repeat):
     for font_path in fonts:
@@ -45,3 +47,7 @@ for _ in range(repeat):
 
             filename = os.path.join(data_folder, f"{char}_{os.path.basename(font_path)}_{nb_test}.png")
             img.save(filename)
+            i += 1
+                    
+            if i % 5000 == 0:
+                print(f"Created tests: {i} / {total}")

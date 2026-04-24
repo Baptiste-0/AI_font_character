@@ -5,7 +5,7 @@ import torchvision.transforms as transforms
 from torch.utils.data import Dataset
 import os
 
-CLASSES = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+CLASSES = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 CHAR_TO_LABEL = {c: i for i, c in enumerate(CLASSES)} # 'A' : 0
 LABEL_TO_CHAR = {i: c for i, c in enumerate(CLASSES)} # 0 : 'A'
 NUM_CLASSES = len(CLASSES)
@@ -25,7 +25,7 @@ class MyDataset(Dataset):
 
         img = Image.open(path).convert("L")
 
-        ch = file[0].upper()
+        ch = file[0]
         if ch not in CHAR_TO_LABEL:
             raise ValueError(f"Bad label char '{ch}' for file {file}. Allowed: {CLASSES}")
         label = CHAR_TO_LABEL[ch]

@@ -23,7 +23,7 @@ fonts.remove("C:/Windows/Fonts\\symbol.ttf")
 fonts.remove("C:/Windows/Fonts\\webdings.ttf")
 fonts.remove("C:/Windows/Fonts\\wingding.ttf")
 
-additional_data_size = 10000
+additional_data_size = 30000
 
 for i in range(additional_data_size):
     nb_font = random.randint(0, len(fonts))
@@ -44,3 +44,6 @@ for i in range(additional_data_size):
 
     filename = os.path.join(data_folder, f"{char}_{os.path.basename(fonts[nb_font])}_{nb_img}.png")
     img.save(filename)
+
+    if i % 5000 == 0:
+        print(f"Created train images: {i} / {additional_data_size}")

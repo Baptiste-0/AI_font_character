@@ -31,7 +31,7 @@ def train():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-    epochs = 3
+    epochs = 5
     size_epoch = len(train_loader)
 
     try:
