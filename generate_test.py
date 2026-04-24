@@ -1,4 +1,4 @@
-import train
+import model
 import os
 from PIL import Image, ImageDraw, ImageFont
 import random
@@ -23,22 +23,25 @@ fonts.remove("C:/Windows/Fonts\\wingding.ttf")
 data_folder = "data/test"
 os.makedirs(data_folder, exist_ok=True)
 
-for font_path in fonts:
-    try:
-        font = ImageFont.truetype(font_path, 48) # font and police size
-    except:
-        continue
+repeat = 2
 
-    for letter in string.ascii_uppercase:
-        img = Image.new("L", (64, 64), color=255) # Letters on 64x64 white grid
-        draw = ImageDraw.Draw(img)
+for _ in range(repeat):
+    for font_path in fonts:
+        try:
+            font = ImageFont.truetype(font_path, 48) # font and police size
+        except:
+            continue
 
-        x = random.randint(5, 25)
-        y = random.randint(0, 5)
+        for char in model.CLASSES:
+            img = Image.new("L", (64, 64), color=255) # Letters on 64x64 white grid
+            draw = ImageDraw.Draw(img)
 
-        draw.text((x, y), letter, font=font, fill=0)
+            x = random.randint(5, 25)
+            y = random.randint(0, 5)
 
-        nb_test = random.randint(0, 2500)
+            draw.text((x, y), char, font=font, fill=0)
 
-        filename = os.path.join(data_folder, f"{letter}_{os.path.basename(font_path)}_{nb_test}.png")
-        img.save(filename)
+            nb_test = random.randint(0, 2500)
+
+            filename = os.path.join(data_folder, f"{char}_{os.path.basename(font_path)}_{nb_test}.png")
+            img.save(filename)

@@ -1,8 +1,11 @@
-import train
 import os
 from PIL import Image, ImageDraw, ImageFont
 import random
-import string
+
+data_folder = "data/train/1"
+os.makedirs(data_folder, exist_ok=True)
+
+import model
 
 font_folder = "C:/Windows/Fonts"
 
@@ -22,9 +25,6 @@ fonts.remove("C:/Windows/Fonts\\wingding.ttf")
 
 additional_data_size = 10000
 
-data_folder = "data/train/1"
-os.makedirs(data_folder, exist_ok=True)
-
 for i in range(additional_data_size):
     nb_font = random.randint(0, len(fonts))
     try:
@@ -36,11 +36,11 @@ for i in range(additional_data_size):
 
     x = random.randint(5, 25)
     y = random.randint(0, 5)
+    char = random.choice(model.CLASSES)
 
-    letter = random.choice(string.ascii_uppercase)
-    draw.text((x, y), letter, font=font, fill=0)
+    draw.text((x, y), char, font=font, fill=0)
 
     nb_img = random.randint(1, 2500)
 
-    filename = os.path.join(data_folder, f"{letter}_{os.path.basename(fonts[nb_font])}_{nb_img}.png")
+    filename = os.path.join(data_folder, f"{char}_{os.path.basename(fonts[nb_font])}_{nb_img}.png")
     img.save(filename)

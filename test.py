@@ -1,5 +1,4 @@
-from train import load_best
-from train import CNN
+from model import *
 
 from PIL import Image
 import torch
@@ -21,6 +20,7 @@ model.eval()
 test_files = [f for f in os.listdir("data/test") if f.endswith(".png")]
 
 correct = 0
+ct = 0
 
 for f in test_files:
     img = Image.open(os.path.join("data/test", f))
@@ -31,7 +31,13 @@ for f in test_files:
     output = model(img.to(device))
     pred = torch.argmax(output, dim=1)
 
-    if pred.item() == ord(os.path.basename(f)[0]) - ord('A'):
+    label = CHAR_TO_LABEL[os.path.basename(f)[0]]
+
+    if pred.item() == label:
         correct+=1
+
+    ct += 1
+    if ct % 1000 == 0:
+        print(f"{ct} / {len(test_files)} tested")
 
 print(f"Résultats bon: {correct / len(test_files) * 100:.2f}%")
